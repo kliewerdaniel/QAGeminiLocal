@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  # Python application service
+  my-app:
+    build:
+      context: .
+      dockerfile: qagemini.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file: /qa/bin .env
+
+  # PostgreSQL database service
+  db:
+    image: "postgres:latest"
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    env_file: /qa/bin .env

@@ -1,0 +1,17 @@
+FROM python:3.11-slim-buster # Lightweight Python image
+
+WORKDIR /app # Our app's main directory
+
+COPY requirements.txt ./  # First, dependencies
+
+COPY . ./ #  Now, project files 
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"] #  Starting your server 
+
+
+
+
+FROM tensorflow/tensorflow:2.6.0
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
